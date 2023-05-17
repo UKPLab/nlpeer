@@ -1,0 +1,30 @@
+pattern	type	comment
+[Ff]igure *(?P<ix>[a-zA-Z0-9_]*\d+)[a-zA-Z0-9_]*	fig-ix	Figure 3
+[Ff]ig(\.?) *(?P<ix>[a-zA-Z0-9_]*\d+)[a-zA-Z0-9_]*	fig-ix	Fig. 3
+[Tt]able *(?P<ix>[a-zA-Z0-9_]*\d+)[a-zA-Z0-9_]*	table-ix	Table 1
+[Ss]ection *(?P<ix>\d+)	sec-ix	Section 3 (also, Section 3.1 -> 3)
+[Ss]ec(\.?) *(?P<ix>\d+)	sec-ix	# Sec. 2
+(?P<ix>[A-Z][A-z]+) [Ss]ection	sec-name	# Methods section (FIXME buggy!)
+[“"'](?P<ix>[A-Z][A-z ]+)[”"'] [Ss]ection	sec-name	"Results and Analysis" section
+(?P<ix>\b[Tt]itle\b)	sec-name	Title
+([\s\(:;]|^)["”“‘’\'«‹»›„“‟”’❝❞❮❯⹂〝〞〟＂‚‘‛❛❜❟]{1,2}(?P<ix>.+?)["”“‘’\'«‹»›„“‟”’❝❞❮❯⹂〝〞〟＂‚‘‛❛❜❟]{1,2}([\s\)\.,]|$)	quote	"<quote>"
+[Rr]ef(\.|erence)? ?(?P<ix>\d+)	ref-ix	Ref3 or Ref 3 or ref.3 or reference 3
+(\bp\.?|page) ?(?P<ix>\d+)	page	page 3 or p. 3 or p3
+\b(pp\.?|paragraph|para\.?) ?(?P<ix>\d+)	paragraph	paragraph 3 or pp. 3 or para 3
+\b(line|l\.?) ?(?P<ix>\d+)	line	line 3 or l. 3
+(?P<ix>first) page	page
+(?P<ix>second) page	page
+(?P<ix>third) page	page
+(?P<ix>first) paragraph	paragraph
+(?P<ix>second) paragraph	paragraph
+(?P<ix>third) paragraph	paragraph
+(?P<ix>first) line	line
+(?P<ix>second) line	line
+(?P<ix>third) line	line
+[IiOo]n lines? (?P<ix>\d+)	line	lines 23-... -> 23
+[IiOo]n l\.? ?(?P<ix>\d+)	line	l. 23
+[IiOo]n ll\.? ?(?P<ix>\d+)	line	ll. 23-25 -> 23
+\b(?P<ix>\d)(st|nd|rd) page	page
+\b(?P<ix>\d)(st|nd|rd) paragraph	paragraph
+\b(?P<ix>\d)(st|nd|rd) line	line
+\b[Ee]q(uations?|\.?) ?(?P<ix>\d+) formula Equation xyz
