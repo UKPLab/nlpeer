@@ -138,7 +138,7 @@ Any additional fields may occur. The authors field may be empty if the paper is 
 *Note: Currently F1000 does not include specific citation spans, but only links to the bibliography or
 text media from the full paragraph node. We plan to fix this in the future.*
 
-Please check out the benchmark/__init__.py for an overview of the node types, reviewing scales etc.
+Please check out the nlpeer/__init__.py for an overview of the node types, reviewing scales etc.
 
 ## Data Loading
 
