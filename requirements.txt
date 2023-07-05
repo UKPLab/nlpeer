@@ -16,3 +16,5 @@ pulp==2.6.0
 simplejson==3.17.6
 kaleido==0.2.1
 cchardet==2.1.7
+git+https://github.com/UKPLab/intertext-graph.git
+git+https://github.com/kermitt2/grobid_client_python.git
