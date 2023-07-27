@@ -265,12 +265,20 @@ python tasks/skimming/evaluate.py --benchmark_dir $BMPATH --project $WANDB_PROJ 
 Please use the following citation:
 
 ```
-@article{dycke2022nlpeer,
-  title={NLPEER: A Unified Resource for the Computational Study of Peer Review},
-  author={Dycke, Nils and Kuznetsov, Ilia and Gurevych, Iryna},
-  journal={arXiv preprint arXiv:2211.06651},
-  year={2022}
+@inproceedings{dycke-etal-2023-nlpeer,
+    title = "{NLP}eer: A Unified Resource for the Computational Study of Peer Review",
+    author = "Dycke, Nils  and
+      Kuznetsov, Ilia  and
+      Gurevych, Iryna",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.277",
+    pages = "5049--5073"
 }
+
 ```
 
 Contact Persons: Nils Dycke, Ilia Kuznetsov
