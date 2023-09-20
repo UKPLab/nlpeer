@@ -283,8 +283,11 @@ Please use the following citation:
 
 Contact Persons: Nils Dycke, Ilia Kuznetsov
 
+<https://intertext.ukp-lab.de/>
+
 <https://www.ukp.tu-darmstadt.de>
 
 <https://www.tu-darmstadt.de>
+
 
 This repository contains experimental software and is published for the sole purpose of giving additional background details on the respective publication.
