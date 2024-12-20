@@ -1,4 +1,5 @@
 # NLPeer: A Unified Resource for the Computational Study of Peer Review
+<img src="./logo.png" align="right" height="256" width="256">
 
 This is the official code repository for NLPeer introduced in the paper 
 "NLPeer: A Unified Resource for the Computational Study of Peer Review".
@@ -7,15 +8,34 @@ The associated dataset is intended for the study of peer review and approaches t
 to peer review. We stress that review author profiling violates the intended use of this dataset.
 Please also read the associated dataset card.
 
+The tasks and models provided in this dataset aim at assisting junior reviews (i.e. reviewers with less experience) 
+perform reviews with more confidence, higher accuracy, and quicker.
+
+All datasets have clear licenses attached and reviewers consented to the use of
+their data for scientific purposes.
+
+## :newspaper: NEWS
+
+:rocket: NLPEER got updated to NLPEERv2. NLPEERv2 now includes new data from
+* ARR (2023-2024)
+* EMNLP 2023
+* PLOS (TBA-TBA)
+* ELIFE (TBA-TBA)
+
 ## Quickstart
-1. Install the package from github.
+1. Install dependency (itg graph) from github.
+```bash
+pip install git+https://github.com/UKPLab/intertext-graph.git
+```
+
+2. Install the package from github.
 ```bash
 pip install git+https://github.com/UKPLab/nlpeer
 ```
 
-2. Download the newest version of the NLPeer dataset (here)[https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/3618].
+2. Download the newest version of the NLPeer dataset (TBA)[].
 
-3. Load e.g. the ARR22 dataset
+4. Load e.g. the ARR22 dataset
 ```python
 from nlpeer import DATASETS, PAPERFORMATS, PaperReviewDataset
 
@@ -29,7 +49,6 @@ data = PaperReviewDataset("<path_to_top_dir_of_nlpeer>", dataset_type, version, 
 # iterate over papers with associated reviews
 paperwise = [(paper_id, meta, paper, reviews) for paper_id, meta, paper, reviews in data]
 ```
-
 
 ## NLPeer Data Format
 
@@ -259,6 +278,20 @@ python tasks/skimming/evaluate.py --benchmark_dir $BMPATH --project $WANDB_PROJ 
 ```
 
 3. Process output: The output is a dict of performance measures. Check for the desired metric in the dict. The random baseline is reported along.
+
+## Versions of the Data
+
+| version           | URL           | Change Log                           |
+|-------------------|---------------|--------------------------------------|
+| NLPEERv2 (newest) | TBA | Added ARR23/24, ELIFE, PLOS, EMNLP23 |
+| NLPEERv1          | https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/3618 |
+
+
+## Contributors
+
+* **Nils Dycke** ([github](https://github.com/NilsDy); [bsky](https://bsky.app/profile/nilsdy.bsky.social); [X](https://x.com/DyNils))
+* **Sheng Lu** ([website](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/staff_ukp/ukp_home_content_staff_1_details_124800.en.jsp))
+* **Hanna Holtdirk** 
 
 ## Citation
 
