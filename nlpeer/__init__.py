@@ -51,6 +51,9 @@ class DATASETS(Enum):
     ACL17 = "PeerRead-ACL2017"
     CONLL16 = "PeerRead-CONLL2016"
     COLING20 = "COLING2020"
+    ELIFE = "ELIFE"
+    EMNLP23 = "EMNLP23"
+    PLOS = "PLOS"
 
 
 class PAPERFORMATS(Enum):
@@ -118,12 +121,17 @@ class PaperReviewDataset:
     cache = None
 
     def __init__(self, base_path: str,
-                 dataset: DATASETS,
+                 dataset: DATASETS|str,
                  version: int,
                  paper_format:PAPERFORMATS=PAPERFORMATS.ITG,
                  hold_in_memory:bool=True,
                  preload:bool=False):
         # get path
+        if type(dataset) == str:
+            sp = dataset
+        else:
+            sp = dataset.value
+
         datapath = pjoin(base_path, dataset.value, "data")
         assert os.path.exists(datapath), f"The passed dataset does not exist in the given directory {datapath}"
 
@@ -135,7 +143,7 @@ class PaperReviewDataset:
         assert not preload or hold_in_memory, "Invalid configuration. Can only preload if holding in memory"
 
         if preload:
-            logging.info(f"You are loading {dataset.name} completely into memory. For large datasets this is "
+            logging.info(f"You are loading {dataset} completely into memory. For large datasets this is "
                          f"discouraged.")
 
         # setup loader
