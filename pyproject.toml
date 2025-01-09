@@ -34,9 +34,3 @@ dependencies = [
     "grobid_client_python @ git+https://github.com/kermitt2/grobid_client_python.git"
 ]
 requires-python = ">=3.10"
-
-[tool.setuptools]
-package-dir = {"" = "."}
-
-[tool.setuptools.packages.find]
-where = ["nlpeer"]
