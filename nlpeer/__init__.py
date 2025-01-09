@@ -133,14 +133,17 @@ class PaperReviewDataset:
                  version: int,
                  paper_format:PAPERFORMATS=PAPERFORMATS.ITG,
                  hold_in_memory:bool=True,
-                 preload:bool=False):
+                 preload:bool=False,
+                 strict_loading=False):
+        self.strict_loading = strict_loading
+
         # get path
         if type(dataset) == str:
             sp = dataset
         else:
             sp = dataset.value
 
-        datapath = pjoin(base_path, dataset.value, "data")
+        datapath = pjoin(base_path, sp, "data")
         assert os.path.exists(datapath), f"The passed dataset does not exist in the given directory {datapath}"
 
         self.datapath = datapath
@@ -153,6 +156,11 @@ class PaperReviewDataset:
         if preload:
             logging.info(f"You are loading {dataset} completely into memory. For large datasets this is "
                          f"discouraged.")
+
+        if not strict_loading:
+            logging.info("You are loading dataset in non-strict mode. I.e. you have no guarantees that each paper "+
+                         "text and review can be loaded during iteration. Use only if your dataset contains reviews "+
+                         "without papers and vice versa.")
 
         # setup loader
         self._setup(hold_in_memory, preload, version, paper_format)
@@ -197,19 +205,29 @@ class PaperReviewDataset:
         # get doc
         if self.paper_format == PAPERFORMATS.ITG:
             itg_path = pjoin(paper_dir, f"paper{self.paper_format.value}")
-            assert os.path.exists(itg_path), f"Path to the ITG version of the paper does not exist: {itg_path}"
+            itg_exists = os.path.exists(itg_path)
 
-            with open(itg_path, "r") as fp:
-                paper = IntertextDocument.load_json(fp)
+            assert not self.strict_loading or itg_exists, f"Path to the ITG version of the paper does not exist: {itg_path}"
+
+            if itg_exists:
+                with open(itg_path, "r") as fp:
+                    paper = IntertextDocument.load_json(fp)
+            else:
+                paper = None
         else:
             raise ValueError(f"Paper format {self.paper_format} is currently not supported for loading!")
 
         # get reviews
         review_path = pjoin(paper_dir, "reviews.json")
-        assert os.path.exists(review_path), f"Path to the reviews of the paper do not exist: {review_path}"
+        reviews_exist = os.path.exists(review_path)
 
-        with open(review_path, "r") as fp:
-            reviews = json.load(fp)
+        assert not self.strict_loading or reviews_exist, f"Path to the reviews of the paper do not exist: {review_path}"
+
+        if reviews_exist:
+            with open(review_path, "r") as fp:
+                reviews = json.load(fp)
+        else:
+            reviews = {}
 
         return paper_id, paper_meta, paper, reviews
 

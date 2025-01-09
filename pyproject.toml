@@ -33,7 +33,7 @@ dependencies = [
     "intertext-graph @ git+https://github.com/UKPLab/intertext-graph.git",
     "grobid_client_python @ git+https://github.com/kermitt2/grobid_client_python.git"
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 
 [tool.setuptools]
 package-dir = {"" = "."}
