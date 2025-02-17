@@ -17,34 +17,26 @@ their data for scientific purposes.
 ## :newspaper: NEWS
 
 :rocket: NLPEER got updated to NLPEERv2. NLPEERv2 now includes new data from
-* ARR (2023-2024)
-* EMNLP 2023
-* PLOS (TBA-TBA)
-* ELIFE (TBA-TBA)
+
+* **ARR-EMNLP-2024**: _Contamination free_ data donated at ARR during 2024 for EMNLP'24 (NLP domain)
+* **EMNLP-2023**: Public data from EMNLP'23 (NLP domain)
+* **PLOS (2019-2024)**: Public peer review data from PLOS (multi-domain)
+* **ELIFE (2023-2024)**: Public peer review data from ELIFE (multi-domain)
 
 ## Quickstart
-1. Install dependency (itg graph) from github.
-```bash
-pip install git+https://github.com/UKPLab/intertext-graph.git
-```
-
-2. Install the package from github.
+1. Install the package from github.
 ```bash
 pip install git+https://github.com/UKPLab/nlpeer
 ```
 
-2. Download the newest version of the NLPeer dataset (TBA)[].
+2. Request and download the original [NLPeer dataset](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/3618) and the new [NLPEERv2 dataset](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/4459). If you use both, simply merge them into one top directory.
 
-4. Load e.g. the ARR22 dataset
+4. Load e.g. the ARR-EMNLP-2024 dataset
 ```python
 from nlpeer import DATASETS, PAPERFORMATS, PaperReviewDataset
 
-dataset_type = DATASETS.ARR22
-paper_format = PAPERFORMATS.ITG
-version = 1
-
-# load data paperwise
-data = PaperReviewDataset("<path_to_top_dir_of_nlpeer>", dataset_type, version, paper_format)
+# load data paperwise in version 1
+data = PaperReviewDataset("<path_to_top_dir_of_nlpeer>", "ARR-EMNLP-2024", version=1, paper_format=PAPERFORMATS.ITG)
 
 # iterate over papers with associated reviews
 paperwise = [(paper_id, meta, paper, reviews) for paper_id, meta, paper, reviews in data]
@@ -62,7 +54,8 @@ paperwise = [(paper_id, meta, paper, reviews) for paper_id, meta, paper, reviews
           > VERSION-NUM
               paper.pdf           =  raw article pdfs of the dataset
               paper.itg           =  article in parsed ITG format
-              paper.tei           =  article in prased GROBID format
+              paper.tei           =  article in prased GROBID format (if applicable)
+              paper.docling.json  =  article in docling format (if applicable)
               # ... 
               # more parsed paper types go here (e.g. latex)
               
@@ -95,7 +88,10 @@ PDF as is
 Paper parsed in ITG format. ALWAYS present.
 
 #### paper.tei
-Paper parsed in GROBID format. Should be close to ALWAYS present.
+Paper parsed in GROBID format.
+
+#### paper.docling.json
+Paper parsed in docling format.
 
 #### VERSION_NUM/meta.json
 ```json
@@ -281,15 +277,15 @@ python tasks/skimming/evaluate.py --benchmark_dir $BMPATH --project $WANDB_PROJ 
 
 ## Versions of the Data
 
-| version           | URL           | Change Log                           |
-|-------------------|---------------|--------------------------------------|
-| NLPEERv2 (newest) | TBA | Added ARR23/24, ELIFE, PLOS, EMNLP23 |
+| version           | URL           | Change Log                               |
+|-------------------|---------------|------------------------------------------|
+| NLPEERv2 (newest) | https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/4459 | Added ARR-EMNLP-24, ELIFE, PLOS, EMNLP23 |
 | NLPEERv1          | https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/3618 |
 
 
 ## Contributors
 
-* **Nils Dycke** ([github](https://github.com/NilsDy); [bsky](https://bsky.app/profile/nilsdy.bsky.social); [X](https://x.com/DyNils))
+* **Nils Dycke** ([github](https://github.com/NilsDy); [bsky](https://bsky.app/profile/nilsdy.bsky.social))
 * **Sheng Lu** ([website](https://www.informatik.tu-darmstadt.de/ukp/ukp_home/staff_ukp/ukp_home_content_staff_1_details_124800.en.jsp))
 * **Hanna Holtdirk** 
 
@@ -314,7 +310,7 @@ Please use the following citation:
 
 ```
 
-Contact Persons: Nils Dycke, Ilia Kuznetsov
+Contact Persons: Nils Dycke
 
 <https://intertext.ukp-lab.de/>
 
